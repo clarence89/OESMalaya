@@ -85,7 +85,6 @@ class AppServiceProvider extends ServiceProvider
                             $query->orWhere($field, 'like', '%' . $searchValue->simpleSearchText . '%');
                         }
                     });
-
                 } else {
 
                     /*Compare Commands*/
@@ -96,48 +95,48 @@ class AppServiceProvider extends ServiceProvider
 
                         switch ($condition) {
 
-                            case 'contains' :
+                            case 'contains':
                                 $searchQuery['condition'] = 'like';
                                 $searchQuery['value'] = "%" . $searchValue . "%";
                                 break;
 
-                            case 'notContains' :
+                            case 'notContains':
                                 $searchQuery['condition'] = 'not like';
                                 $searchQuery['value'] = "%" . $searchValue . "%";
                                 break;
 
-                            case 'starts' :
+                            case 'starts':
                                 $searchQuery['condition'] = 'like';
                                 $searchQuery['value'] = $searchValue . "%";
                                 break;
 
-                            case 'ends' :
+                            case 'ends':
                                 $searchQuery['condition'] = 'like';
                                 $searchQuery['value'] = "%" . $searchValue;
                                 break;
 
-                            case '>' :
+                            case '>':
                                 $searchQuery['condition'] = '>';
                                 $searchQuery['value'] = $searchValue;
                                 break;
 
-                            case '>=' :
+                            case '>=':
                                 $searchQuery['condition'] = '>=';
                                 $searchQuery['value'] = $searchValue;
                                 break;
 
-                            case '<' :
+                            case '<':
                                 $searchQuery['condition'] = '<';
                                 $searchQuery['value'] = $searchValue;
                                 break;
 
-                            case '<=' :
+                            case '<=':
 
                                 $searchQuery['condition'] = '<=';
                                 $searchQuery['value'] = $searchValue;
                                 break;
 
-                            case 'between' :
+                            case 'between':
 
                                 $searchQuery['condition'] = 'between';
                                 $searchQuery['value'] = [$searchValue['from'], $searchValue['to']];
@@ -170,22 +169,19 @@ class AppServiceProvider extends ServiceProvider
                                 $query->where($key, $field['condition'], $field['value']);
                             }
                         });
-
                     }
-
                 }
 
                 /*Order Function*/
-                if($request->sortDirection){
+                if ($request->sortDirection) {
                     $sortDirection = 'desc';
-                }else{
+                } else {
                     $sortDirection = 'asc';
                 }
 
-                if($request->sortKey){
+                if ($request->sortKey) {
                     $searchQuery->orderBy($request->sortKey, $sortDirection);
                 }
-
             } else {
                 $searchQuery = $this;
             }
@@ -197,13 +193,15 @@ class AppServiceProvider extends ServiceProvider
         });
 
         /*Get Related Data*/
-        Builder::macro('getRelatedData', function ($key, $table) {
-            return $this->whereIn('id', function ($query) use ($key, $table) {
-                $query->select($key)
-                    ->from($table)
-                    ->distinct();
-            });
-        }
+        Builder::macro(
+            'getRelatedData',
+            function ($key, $table) {
+                return $this->whereIn('id', function ($query) use ($key, $table) {
+                    $query->select($key)
+                        ->from($table)
+                        ->distinct();
+                });
+            }
         );
     }
 }

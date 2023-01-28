@@ -545,7 +545,7 @@ __webpack_require__.r(__webpack_exports__);
 
   var mainMenuLinks = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
     return [{
-      id: "externalGitHubRepo",
+      id: "externalGitHub",
       label: tm("externalGitHubRepo"),
       icon: "star",
       link: "https://github.com/sinan-aydogan/anemon-laravel",
@@ -553,40 +553,41 @@ __webpack_require__.r(__webpack_exports__);
       target: "_blank",
       visibleFor: roles.includes('Super Admin')
     }, {
-      id: "authPages",
-      label: tm("authPages"),
+      id: "externalManageCreate",
+      label: tm("externalManageCreate"),
       icon: "tv",
       link: null,
       type: "dropdown",
+      visibleFor: roles.includes('Super Admin'),
       links: [{
-        id: "authLogin",
-        label: tm("authLogin"),
+        id: "externalYearLevel",
+        label: tm("externalYearLevel"),
         icon: null,
-        link: "login-app",
+        link: "year-level",
         type: "route"
       }, {
-        id: "authRegister",
-        label: tm("authRegister"),
+        id: "externalSection",
+        label: tm("externalSection"),
         icon: null,
-        link: "register-app",
+        link: "sections",
         type: "route"
       }, {
-        id: "authForgotPassword",
-        label: tm("authForgotPassword"),
+        id: "externalSubject",
+        label: tm("externalSubject"),
         icon: null,
-        link: "forgot-password-app",
+        link: "subjects",
         type: "route"
       }, {
-        id: "authLockScreen",
-        label: tm("authLockScreen"),
+        id: "externalSectionSched",
+        label: tm("externalSectionSched"),
         icon: null,
-        link: "lock-app",
+        link: "section-schedule",
         type: "route"
       }, {
-        id: "authProfile",
-        label: tm("authProfile"),
+        id: "externalGrade",
+        label: tm("externalGrade"),
         icon: null,
-        link: "profile.show",
+        link: "grades",
         type: "route"
       }]
     }, {
